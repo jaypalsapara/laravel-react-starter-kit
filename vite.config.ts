@@ -40,6 +40,17 @@ export default defineConfig({
         },
     },
     lint: {
+        rules: {
+            'no-unused-vars': [
+                'error',
+                {
+                    fix: {
+                        imports: 'safe-fix',
+                        variables: 'off',
+                    },
+                },
+            ],
+        },
         ignorePatterns: [
             'vendor/**',
             'node_modules/**',
