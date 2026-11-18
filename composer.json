@@ -59,12 +59,12 @@
         "lint": [
             "rector",
             "pint --parallel",
-            "pnpm run check:fix"
+            "pnpm run lint"
         ],
         "lint:check": [
             "pint --parallel --test",
             "rector --dry-run",
-            "pnpm run check"
+            "pnpm run lint:check"
         ],
         "ci:check": [
             "Composer\\Config::disableProcessTimeout",
