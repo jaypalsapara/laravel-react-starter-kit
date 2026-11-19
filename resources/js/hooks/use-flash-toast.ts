@@ -1,7 +1,7 @@
 import { router } from '@inertiajs/react';
 import { useEffect } from 'react';
-import { toast } from 'sonner';
 import type { FlashToast } from '@/types/ui';
+import { toast } from '@/components/ui/toast';
 
 export function useFlashToast(): void {
     useEffect(() => {
@@ -13,7 +13,10 @@ export function useFlashToast(): void {
                 return;
             }
 
-            toast[data.type](data.message);
+            toast.add({
+                type: data.type,
+                description: data.message,
+            });
         });
     }, []);
 }

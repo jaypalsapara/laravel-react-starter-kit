@@ -1,6 +1,9 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import { dashboard, login } from '@/routes';
 import { register } from '@/routes';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { ArrowRight, ArrowUpRight, CloudUpload } from 'lucide-react';
 
 export default function Welcome() {
     const { auth } = usePage().props;
@@ -14,7 +17,9 @@ export default function Welcome() {
                         {auth.user ? (
                             <Link
                                 href={dashboard()}
-                                className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+                                className={cn(
+                                    buttonVariants({ variant: 'outline' }),
+                                )}
                             >
                                 Dashboard
                             </Link>
@@ -22,13 +27,15 @@ export default function Welcome() {
                             <>
                                 <Link
                                     href={login()}
-                                    className="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
+                                    className={cn(
+                                        buttonVariants({ variant: 'outline' }),
+                                    )}
                                 >
                                     Log in
                                 </Link>
                                 <Link
                                     href={register()}
-                                    className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+                                    className={cn(buttonVariants())}
                                 >
                                     Register
                                 </Link>
@@ -116,9 +123,10 @@ export default function Welcome() {
                                     <a
                                         href="https://cloud.laravel.com"
                                         target="_blank"
-                                        className="inline-block rounded-sm border border-black bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:border-black hover:bg-black dark:border-[#eeeeec] dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:border-white dark:hover:bg-white"
+                                        className={cn(buttonVariants())}
                                     >
-                                        Deploy now
+                                        Deploy now{' '}
+                                        <ArrowUpRight data-icon="inline-end" />
                                     </a>
                                 </li>
                             </ul>
