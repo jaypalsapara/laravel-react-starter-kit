@@ -8,6 +8,7 @@ import {
     InputGroupButton,
     InputGroupInput,
 } from '@/components/ui/input-group';
+import { Icon } from '@/components/ui/icon';
 
 export default function PasswordInput({
     className,
@@ -33,9 +34,9 @@ export default function PasswordInput({
                     tabIndex={-1}
                 >
                     {showPassword ? (
-                        <Eye className="size-4" />
+                        <Icon node={Eye} className="size-4" />
                     ) : (
-                        <EyeOff className="size-4" />
+                        <Icon node={EyeOff} className="size-4" />
                     )}
                 </InputGroupButton>
             </InputGroupAddon>

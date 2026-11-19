@@ -4,6 +4,7 @@ import { cn } from "cn"
 
 import { Button } from "@/components/ui/button"
 import { XIcon } from "lucide-react"
+import { Icon } from "@/components/ui/icon"
 
 function Sheet({ ...props }: SheetPrimitive.Root.Props) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />
@@ -68,8 +69,7 @@ function SheetContent({
               />
             }
           >
-            <XIcon
-            />
+            <Icon node={XIcon} />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}

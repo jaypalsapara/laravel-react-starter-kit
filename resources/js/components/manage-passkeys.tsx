@@ -4,6 +4,7 @@ import { destroy } from '@/actions/Laravel/Passkeys/Http/Controllers/PasskeyRegi
 import Heading from '@/components/heading';
 import PasskeyItem from '@/components/passkey-item';
 import PasskeyRegistration from '@/components/passkey-register';
+import { Icon } from '@/components/ui/icon';
 import type { Passkey } from '@/types/auth';
 
 export type Props = {
@@ -15,7 +16,7 @@ const EmptyState = () => {
     return (
         <div className="p-8 text-center">
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
-                <KeyRound className="h-7 w-7 text-muted-foreground" />
+                <Icon node={KeyRound} className="h-7 w-7 text-muted-foreground" />
             </div>
             <p className="font-medium">No passkeys yet</p>
             <p className="mt-1 text-sm text-muted-foreground">

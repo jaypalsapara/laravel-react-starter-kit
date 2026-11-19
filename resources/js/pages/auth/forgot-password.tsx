@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { login } from '@/routes';
 import { email } from '@/routes/password';
+import { Icon } from '@/components/ui/icon';
 
 export default function ForgotPassword({ status }: { status?: string }) {
     return (
@@ -46,7 +47,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                                     data-test="email-password-reset-link-button"
                                 >
                                     {processing && (
-                                        <LoaderCircle className="h-4 w-4 animate-spin" />
+                                        <Icon node={LoaderCircle} className="h-4 w-4 animate-spin" />
                                     )}
                                     Email password reset link
                                 </Button>

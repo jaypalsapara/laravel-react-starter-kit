@@ -4,6 +4,7 @@ import { register } from '@/routes';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { ArrowUpRight } from 'lucide-react';
+import { Icon } from '@/components/ui/icon';
 
 export default function Welcome() {
     const { auth } = usePage().props;
@@ -126,7 +127,7 @@ export default function Welcome() {
                                         className={cn(buttonVariants())}
                                     >
                                         Deploy now{' '}
-                                        <ArrowUpRight data-icon="inline-end" />
+                                        <Icon node={ArrowUpRight} data-icon="inline-end" />
                                     </a>
                                 </li>
                             </ul>

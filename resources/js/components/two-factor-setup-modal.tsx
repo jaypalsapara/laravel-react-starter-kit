@@ -22,6 +22,7 @@ import { useAppearance } from '@/hooks/use-appearance';
 import { useClipboard } from '@/hooks/use-clipboard';
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth';
 import { confirm } from '@/routes/two-factor';
+import { Icon } from '@/components/ui/icon';
 
 function GridScanIcon() {
     return (
@@ -43,7 +44,7 @@ function GridScanIcon() {
                         />
                     ))}
                 </div>
-                <ScanLine className="relative z-20 size-6 text-foreground" />
+                <Icon node={ScanLine} className="relative z-20 size-6 text-foreground" />
             </div>
         </div>
     );
@@ -126,7 +127,7 @@ function TwoFactorSetupStep({
                                         onClick={() => copy(manualSetupKey)}
                                         className="border-l border-border px-3 hover:bg-muted"
                                     >
-                                        <IconComponent className="w-4" />
+                                        <Icon node={IconComponent} className="w-4" />
                                     </button>
                                 </>
                             )}

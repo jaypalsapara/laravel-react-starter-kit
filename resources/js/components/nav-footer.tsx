@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/sidebar';
 import { toUrl } from '@/lib/utils';
 import type { NavItem } from '@/types';
+import { Icon } from '@/components/ui/icon';
 
 export function NavFooter({
     items,
@@ -34,7 +35,7 @@ export function NavFooter({
                                     />
                                 }
                             >
-                                {item.icon && <item.icon className="h-5 w-5" />}
+                                {item.icon && <Icon node={item.icon} className="h-5 w-5" />}
                                 <span>{item.title}</span>
                             </SidebarMenuButton>
                         </SidebarMenuItem>

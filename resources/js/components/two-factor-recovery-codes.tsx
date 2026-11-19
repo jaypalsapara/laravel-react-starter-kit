@@ -11,6 +11,7 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { regenerateRecoveryCodes } from '@/routes/two-factor';
+import { Icon } from '@/components/ui/icon';
 
 type Props = {
     recoveryCodesList: string[];
@@ -56,7 +57,7 @@ export default function TwoFactorRecoveryCodes({
         <Card>
             <CardHeader>
                 <CardTitle className="flex gap-3">
-                    <LockKeyhole className="size-4" aria-hidden="true" />
+                    <Icon node={LockKeyhole} className="size-4" aria-hidden="true" />
                     2FA recovery codes
                 </CardTitle>
                 <CardDescription>
@@ -72,7 +73,7 @@ export default function TwoFactorRecoveryCodes({
                         aria-expanded={codesAreVisible}
                         aria-controls="recovery-codes-section"
                     >
-                        <RecoveryCodeIconComponent
+                        <Icon node={RecoveryCodeIconComponent}
                             className="size-4"
                             aria-hidden="true"
                         />
@@ -92,7 +93,7 @@ export default function TwoFactorRecoveryCodes({
                                     disabled={processing}
                                     aria-describedby="regenerate-warning"
                                 >
-                                    <RefreshCw /> Regenerate codes
+                                    <Icon node={RefreshCw} /> Regenerate codes
                                 </Button>
                             )}
                         </Form>

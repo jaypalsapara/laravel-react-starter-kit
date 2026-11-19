@@ -5,6 +5,7 @@ import Heading from '@/components/heading';
 import TwoFactorRecoveryCodes from '@/components/two-factor-recovery-codes';
 import TwoFactorSetupModal from '@/components/two-factor-setup-modal';
 import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
 import { useTwoFactorAuth } from '@/hooks/use-two-factor-auth';
 import { disable, enable } from '@/routes/two-factor';
 
@@ -91,7 +92,7 @@ export default function ManageTwoFactor(props: Props) {
                     <div>
                         {hasSetupData ? (
                             <Button onClick={() => setShowSetupModal(true)}>
-                                <ShieldCheck />
+                                <Icon node={ShieldCheck} />
                                 Continue setup
                             </Button>
                         ) : (

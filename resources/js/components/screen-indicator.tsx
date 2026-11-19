@@ -1,6 +1,7 @@
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from 'cn';
 import { Laptop, Monitor, Smartphone, Tablet, TvMinimal } from 'lucide-react';
+import { Icon } from '@/components/ui/icon';
 
 interface Props {
     className?: string;
@@ -37,11 +38,11 @@ function ScreenIndicator({
 }: Props & VariantProps<typeof indicatorVariant>) {
     return (
         <div className={cn(indicatorVariant({ variant, position, className }))}>
-            <Smartphone className="hidden opacity-50 max-md:block" />
-            <Tablet className="hidden opacity-50 md:max-lg:block" />
-            <Laptop className="hidden opacity-50 lg:max-xl:block" />
-            <Monitor className="hidden opacity-50 xl:max-2xl:block" />
-            <TvMinimal className="hidden opacity-50 2xl:block" />
+            <Icon node={Smartphone} className="hidden opacity-50 max-md:block" />
+            <Icon node={Tablet} className="hidden opacity-50 md:max-lg:block" />
+            <Icon node={Laptop} className="hidden opacity-50 lg:max-xl:block" />
+            <Icon node={Monitor} className="hidden opacity-50 xl:max-2xl:block" />
+            <Icon node={TvMinimal} className="hidden opacity-50 2xl:block" />
             <div className="hidden max-sm:block">vs</div>
             <div className="hidden sm:max-md:block">sm</div>
             <div className="hidden md:max-lg:block">md</div>

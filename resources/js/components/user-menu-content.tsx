@@ -12,6 +12,7 @@ import { logout } from '@/routes';
 import { edit } from '@/routes/profile';
 import type { User } from '@/types';
 import { useSidebar } from '@/components/ui/sidebar';
+import { Icon } from '@/components/ui/icon';
 
 type Props = {
     user: User;
@@ -48,7 +49,7 @@ export function UserMenuContent({ user }: Props) {
                         />
                     }
                 >
-                    <Settings className="mr-2" />
+                    <Icon node={Settings} className="mr-2" />
                     Settings
                 </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -65,7 +66,7 @@ export function UserMenuContent({ user }: Props) {
                     />
                 }
             >
-                <LogOut className="mr-2" />
+                <Icon node={LogOut} className="mr-2" />
                 Log out
             </DropdownMenuItem>
         </>

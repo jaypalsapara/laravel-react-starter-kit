@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/sidebar';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import type { NavItem } from '@/types';
+import { Icon } from '@/components/ui/icon';
 
 export function NavMain({ items }: { items: NavItem[] }) {
     const { isCurrentUrl } = useCurrentUrl();
@@ -26,7 +27,7 @@ export function NavMain({ items }: { items: NavItem[] }) {
                             render={<Link href={item.href} prefetch />}
                             onClick={() => setOpenMobile(false)}
                         >
-                            {item.icon && <item.icon />}
+                            {item.icon && <Icon node={item.icon} />}
                             <span>{item.title}</span>
                         </SidebarMenuButton>
                     </SidebarMenuItem>

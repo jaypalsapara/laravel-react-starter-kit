@@ -14,6 +14,7 @@ import {
 import { UserInfo } from '@/components/user-info';
 import { UserMenuContent } from '@/components/user-menu-content';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Icon } from '@/components/ui/icon';
 
 export function NavUser() {
     const { auth } = usePage().props;
@@ -38,7 +39,7 @@ export function NavUser() {
                         }
                     >
                         <UserInfo user={auth.user} />
-                        <ChevronsUpDown className="ml-auto size-4" />
+                        <Icon node={ChevronsUpDown} className="ml-auto size-4" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                         className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
