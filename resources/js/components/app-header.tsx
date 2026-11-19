@@ -34,6 +34,7 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn, toUrl } from '@/lib/utils';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem, NavItem } from '@/types';
+import { Icon } from '@/components/ui/icon';
 
 type Props = {
     breadcrumbs?: BreadcrumbItem[];
@@ -107,7 +108,10 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                                     className="flex items-center space-x-2 font-medium"
                                                 >
                                                     {item.icon && (
-                                                        <item.icon className="h-5 w-5" />
+                                                        <Icon
+                                                            node={item.icon}
+                                                            className="h-5 w-5"
+                                                        />
                                                     )}
                                                     <span>{item.title}</span>
                                                 </Link>

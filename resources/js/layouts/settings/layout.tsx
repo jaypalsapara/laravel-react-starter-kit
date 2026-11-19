@@ -10,6 +10,7 @@ import { edit } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
 import type { NavItem } from '@/types';
 import { Palette, Shield, SquareUserRound } from 'lucide-react';
+import { Icon } from '@/components/ui/icon';
 
 const sidebarNavItems: NavItem[] = [
     {
@@ -62,7 +63,9 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                                     },
                                 )}
                             >
-                                {item.icon && <item.icon className="h-4 w-4" />}
+                                {item.icon && (
+                                    <Icon node={item.icon} className="size-4" />
+                                )}
                                 {item.title}
                             </Link>
                         ))}
