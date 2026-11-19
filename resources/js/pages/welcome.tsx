@@ -3,7 +3,7 @@ import { dashboard, login } from '@/routes';
 import { register } from '@/routes';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { ArrowRight, ArrowUpRight, CloudUpload } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Welcome() {
     const { auth } = usePage().props;
