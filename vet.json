@@ -57,8 +57,8 @@
             "hash": "tree-v2:90beef2946a71a82b0c7762474c161fcfd223f726458547690a7b2de50399e0e"
         },
         "guzzlehttp/psr7": {
-            "version": "3.4.0",
-            "hash": "tree-v2:6ee8e6361458edf21cd482d053c59adfffb144b5075744add6f2e1cc30ec9f98"
+            "version": "3.5.0",
+            "hash": "tree-v2:843b27d9934008780087ffe6085505ba084ba98694f0b740cae62b3c48660e66"
         },
         "guzzlehttp/uri-template": {
             "version": "v2.0.1",
@@ -153,8 +153,8 @@
             "hash": "tree-v2:b7356b4d4bd00002707626fe64e1b147f73b00464aa433597fb5915ceee6f917"
         },
         "paragonie/constant_time_encoding": {
-            "version": "v3.1.4",
-            "hash": "tree-v2:d256bc6dde78b1631da3efea0ae1173dffe3b983579a4345558bd9e4a2f7fbb5"
+            "version": "v3.1.5",
+            "hash": "tree-v2:a578e065cef14d6e936641aa2cdde238968c1e9e398f69f1f9cb9881900b7ee7"
         },
         "phpdocumentor/reflection-common": {
             "version": "2.2.1",
@@ -397,8 +397,8 @@
             "hash": "tree-v2:de961d934f2e526f30b69334bb474ac1aa3ff77389998ea9d0f6c02ffe493936"
         },
         "web-auth/webauthn-lib": {
-            "version": "5.3.13",
-            "hash": "tree-v2:c98f9944916190a4d12ebf10aeddf02e893948bba1c9ffbea290c467e9e54a8a"
+            "version": "5.3.14",
+            "hash": "tree-v2:3d753a49eab41f807a03f1450a321ad51c1d67176c494b783c2f761d0eb8da17"
         },
         "webmozart/assert": {
             "version": "2.5.1",
@@ -523,8 +523,8 @@
             "hash": "tree-v2:0409e2019377650177c2b10da803617abc85e49d5b02b8697d450c007eab42b4"
         },
         "phpstan/phpstan": {
-            "version": "2.3.6",
-            "hash": "tree-v2:24d9299ad968a955644f90a2734dcaff0f7e70586ab413cc71ef792b76743019"
+            "version": "2.3.7",
+            "hash": "tree-v2:0691dd92981e540a8ab99e2c1f9fadfd093c5b6f25b981a61e8c244e948e532e"
         },
         "phpunit/php-code-coverage": {
             "version": "14.5.2",
