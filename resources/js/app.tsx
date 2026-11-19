@@ -6,6 +6,9 @@ import AppLayout from '@/layouts/app-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import { Toaster } from '@/components/ui/toast';
+import { ScreenIndicator } from '@/components/screen-indicator';
+import Provider from '@/components/provider';
+import Layout from '@/layouts/layout';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -14,23 +17,18 @@ void createInertiaApp({
     layout: (name) => {
         switch (true) {
             case name === 'welcome':
-                return null;
+                return Layout;
             case name.startsWith('auth/'):
-                return AuthLayout;
+                return [Layout, AuthLayout];
             case name.startsWith('settings/'):
-                return [AppLayout, SettingsLayout];
+                return [Layout, AppLayout, SettingsLayout];
             default:
-                return AppLayout;
+                return [Layout, AppLayout];
         }
     },
     strictMode: true,
     withApp(app) {
-        return (
-            <TooltipProvider delay={0}>
-                {app}
-                <Toaster />
-            </TooltipProvider>
-        );
+        return <Provider>{app}</Provider>;
     },
     progress: {
         color: '#4B5563',

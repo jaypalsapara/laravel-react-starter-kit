@@ -11,6 +11,7 @@ import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { logout } from '@/routes';
 import { edit } from '@/routes/profile';
 import type { User } from '@/types';
+import { useSidebar } from '@/components/ui/sidebar';
 
 type Props = {
     user: User;
@@ -18,6 +19,7 @@ type Props = {
 
 export function UserMenuContent({ user }: Props) {
     const cleanup = useMobileNavigation();
+    const { setOpenMobile } = useSidebar();
 
     const handleLogout = () => {
         cleanup();
@@ -36,6 +38,7 @@ export function UserMenuContent({ user }: Props) {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
                 <DropdownMenuItem
+                    onClick={() => setOpenMobile(false)}
                     render={
                         <Link
                             className="block w-full cursor-pointer"

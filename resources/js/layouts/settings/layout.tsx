@@ -9,22 +9,23 @@ import { edit as editAppearance } from '@/routes/appearance';
 import { edit } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
 import type { NavItem } from '@/types';
+import { Palette, Shield, SquareUserRound } from 'lucide-react';
 
 const sidebarNavItems: NavItem[] = [
     {
         title: 'Profile',
         href: edit(),
-        icon: null,
+        icon: SquareUserRound,
     },
     {
         title: 'Security',
         href: editSecurity(),
-        icon: null,
+        icon: Shield,
     },
     {
         title: 'Appearance',
         href: editAppearance(),
-        icon: null,
+        icon: Palette,
     },
 ];
 
@@ -41,7 +42,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
             <div className="flex flex-col lg:flex-row lg:space-x-12">
                 <aside className="w-full max-w-xl lg:w-48">
                     <nav
-                        className="flex flex-col space-y-1 space-x-0"
+                        className="flex scroll-fade-x scrollbar-none space-x-1 max-lg:scroll-fade-x max-lg:overflow-x-auto lg:flex-col lg:space-y-1 lg:space-x-0"
                         aria-label="Settings"
                     >
                         {sidebarNavItems.map((item, index) => (
@@ -53,7 +54,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                                         size: 'sm',
                                         variant: 'ghost',
                                     }),
-                                    'w-full justify-start',
+                                    'justify-start',
                                     {
                                         'bg-muted': isCurrentOrParentUrl(
                                             item.href,
