@@ -57,7 +57,11 @@ export default function TwoFactorRecoveryCodes({
         <Card>
             <CardHeader>
                 <CardTitle className="flex gap-3">
-                    <Icon node={LockKeyhole} className="size-4" aria-hidden="true" />
+                    <Icon
+                        node={LockKeyhole}
+                        className="size-4"
+                        aria-hidden="true"
+                    />
                     2FA recovery codes
                 </CardTitle>
                 <CardDescription>
@@ -73,7 +77,8 @@ export default function TwoFactorRecoveryCodes({
                         aria-expanded={codesAreVisible}
                         aria-controls="recovery-codes-section"
                     >
-                        <Icon node={RecoveryCodeIconComponent}
+                        <Icon
+                            node={RecoveryCodeIconComponent}
                             className="size-4"
                             aria-hidden="true"
                         />

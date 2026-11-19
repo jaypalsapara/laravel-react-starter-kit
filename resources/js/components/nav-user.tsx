@@ -39,7 +39,10 @@ export function NavUser() {
                         }
                     >
                         <UserInfo user={auth.user} />
-                        <Icon node={ChevronsUpDown} className="ml-auto size-4" />
+                        <Icon
+                            node={ChevronsUpDown}
+                            className="ml-auto size-4"
+                        />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                         className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"

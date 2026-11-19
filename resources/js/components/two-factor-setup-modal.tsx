@@ -44,7 +44,10 @@ function GridScanIcon() {
                         />
                     ))}
                 </div>
-                <Icon node={ScanLine} className="relative z-20 size-6 text-foreground" />
+                <Icon
+                    node={ScanLine}
+                    className="relative z-20 size-6 text-foreground"
+                />
             </div>
         </div>
     );
@@ -127,7 +130,10 @@ function TwoFactorSetupStep({
                                         onClick={() => copy(manualSetupKey)}
                                         className="border-l border-border px-3 hover:bg-muted"
                                     >
-                                        <Icon node={IconComponent} className="w-4" />
+                                        <Icon
+                                            node={IconComponent}
+                                            className="w-4"
+                                        />
                                     </button>
                                 </>
                             )}

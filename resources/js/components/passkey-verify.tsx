@@ -50,7 +50,11 @@ export default function PasskeyVerify({
                     onClick={verify}
                     disabled={isLoading}
                 >
-                    {isLoading ? <Spinner /> : <Icon node={KeyRound} className="h-4 w-4" />}
+                    {isLoading ? (
+                        <Spinner />
+                    ) : (
+                        <Icon node={KeyRound} className="h-4 w-4" />
+                    )}
                     {isLoading
                         ? (loadingLabel ?? 'Authenticating...')
                         : (label ?? 'Log in with a passkey')}

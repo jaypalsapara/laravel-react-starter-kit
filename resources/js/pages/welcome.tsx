@@ -127,7 +127,10 @@ export default function Welcome() {
                                         className={cn(buttonVariants())}
                                     >
                                         Deploy now{' '}
-                                        <Icon node={ArrowUpRight} data-icon="inline-end" />
+                                        <Icon
+                                            node={ArrowUpRight}
+                                            data-icon="inline-end"
+                                        />
                                     </a>
                                 </li>
                             </ul>
