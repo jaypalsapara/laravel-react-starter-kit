@@ -148,6 +148,10 @@
             "version": "v5.9.0",
             "hash": "tree-v2:bcacf1331427ef1203828abd4716eae2d19aa68027126caa55860acf46057cf7"
         },
+        "nunomaduro/essentials": {
+            "version": "v1.2.0",
+            "hash": "tree-v2:25d16ae73fe389005a0b48723bab344628c51031d4815b94ae3b5d8d092f2c8b"
+        },
         "nunomaduro/termwind": {
             "version": "v2.4.1",
             "hash": "tree-v2:b7356b4d4bd00002707626fe64e1b147f73b00464aa433597fb5915ceee6f917"
