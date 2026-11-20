@@ -63,8 +63,8 @@ importers:
         specifier: ^3.2.1
         version: 3.2.1(@voidzero-dev/vite-plus-core@8.3.8000(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.0.2))
       lucide-react:
-        specifier: ^1.75.0
-        version: 1.75.0(@types/react@19.3.0)(react@19.3.1)
+        specifier: ^1.77.0
+        version: 1.77.0(@types/react@19.3.0)(react@19.3.1)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -78,8 +78,8 @@ importers:
         specifier: ^4.23.0
         version: 4.23.0(supports-color@10.2.2)
       tailwind-merge:
-        specifier: ^3.7.0
-        version: 3.7.0
+        specifier: ^3.7.1
+        version: 3.7.1
       tailwindcss:
         specifier: ^4.3.5
         version: 4.3.5
@@ -113,11 +113,11 @@ importers:
         specifier: ^0.4.5
         version: 0.4.5(@types/react@19.3.0)
       '@rollup/rollup-linux-x64-gnu':
-        specifier: 4.68.6
-        version: 4.68.6
+        specifier: 4.68.7
+        version: 4.68.7
       '@rollup/rollup-win32-x64-msvc':
-        specifier: 4.68.6
-        version: 4.68.6
+        specifier: 4.68.7
+        version: 4.68.7
       '@tailwindcss/oxide-linux-x64-gnu':
         specifier: ^4.3.5
         version: 4.3.5
@@ -809,14 +809,14 @@ packages:
   '@rolldown/pluginutils@1.1.1':
     resolution: {integrity: sha512-glFIJDvLNDtJhT9qrMFWLPbvS+skxgt4L0K8Ei2YtnhPysAJnsI7nyxSJxKj4ADeKX0OLjC4ntRkwpLOoS3rwA==}
 
-  '@rollup/rollup-linux-x64-gnu@4.68.6':
-    resolution: {integrity: sha512-O+C505KYTRgQp/CF6p7XUzZGB4/pQAZTCj/edTDEXXE3wTKtAgNDXWX/5IcIZ/JQYaE8+iRLGoekmBv9XTz+PA==}
+  '@rollup/rollup-linux-x64-gnu@4.68.7':
+    resolution: {integrity: sha512-rsTjTf5HAm6F4sI6uUfJf2pc+7AWBKxgc2RveGvwB2OvVa1GezSSCDD1rtXPuFhcg3itPv7iHgcZsq/RwWvJ4Q==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@rollup/rollup-win32-x64-msvc@4.68.6':
-    resolution: {integrity: sha512-DkUnrmo6oUZPDK6O6LOXLcEx8BZ85I8qkJLZWoSaOBHPqJfYzTtqweyoSxPpePG7XQvFkFEcSgVvHWRnuiXIcw==}
+  '@rollup/rollup-win32-x64-msvc@4.68.7':
+    resolution: {integrity: sha512-XY9DYHO5UxxVR8G6AErXDlccQmDpvGTLgKHFpvkgsyjwG/PrQuInRjQQfpEzBRuT+bhBtwfS8yDe9sPhVcq/9A==}
     cpu: [x64]
     os: [win32]
 
@@ -2041,8 +2041,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@1.75.0:
-    resolution: {integrity: sha512-piesXAZIXru9d5lHBoM6cPHOBs5+QkMx+3EXwG3xWJ7qdViuz92JtYN0u9jMB6jt+2WbQrwhvJGdMwGnL3EOfA==}
+  lucide-react@1.77.0:
+    resolution: {integrity: sha512-VS6sOi8ZUH1qm6swBL/tpI4xAhB6pFTdHvw3pfCJD+DaTJwpyynVzfOS6mdyMZ+OCdY/GMSQbqinOMOPbNSrQA==}
     peerDependencies:
       '@types/react': '*'
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2444,8 +2444,8 @@ packages:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
     engines: {node: '>=20'}
 
-  tailwind-merge@3.7.0:
-    resolution: {integrity: sha512-XPPUyAc+cvspz3lHTcR/QgPfW2A0lv/xQNIjX3HGhLR+Nq2lHaLq5MtTesHn8GUr3W3DguT2KT5x3NVgRtYwmA==}
+  tailwind-merge@3.7.1:
+    resolution: {integrity: sha512-v7y4BV4FUlO8exj/4M5UXKeoowDiuugVUg3tkMNIyOUCOHy5xp8+5aWQeXCtZ2491sUV1YPsVeM9EveZ6/xuZQ==}
 
   tailwindcss@4.3.5:
     resolution: {integrity: sha512-FcQk9BuffmEHJP2G0XmB2SplU1aLTI7j07Kunk+U74Ny+XiWOtzXz9aujFZ/avntw1e2cOv/3PkgzflQ7gX2vQ==}
@@ -3260,10 +3260,10 @@ snapshots:
 
   '@rolldown/pluginutils@1.1.1': {}
 
-  '@rollup/rollup-linux-x64-gnu@4.68.6':
+  '@rollup/rollup-linux-x64-gnu@4.68.7':
     optional: true
 
-  '@rollup/rollup-win32-x64-msvc@4.68.6':
+  '@rollup/rollup-win32-x64-msvc@4.68.7':
     optional: true
 
   '@sec-ant/readable-stream@0.4.1': {}
@@ -4200,7 +4200,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@1.75.0(@types/react@19.3.0)(react@19.3.1):
+  lucide-react@1.77.0(@types/react@19.3.0)(react@19.3.1):
     dependencies:
       react: 19.3.1
     optionalDependencies:
@@ -4622,7 +4622,7 @@ snapshots:
   tagged-tag@1.0.0:
     optional: true
 
-  tailwind-merge@3.7.0: {}
+  tailwind-merge@3.7.1: {}
 
   tailwindcss@4.3.5: {}
 

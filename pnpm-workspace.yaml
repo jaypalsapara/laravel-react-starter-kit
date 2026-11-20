@@ -8,3 +8,6 @@ catalog:
     vite-plus: 1.7.0
 overrides:
     vite@*: 'catalog:'
+minimumReleaseAgeExclude:
+    - lucide-react@1.77.0
+    - tailwind-merge@3.7.1
