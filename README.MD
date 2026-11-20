@@ -5,5 +5,5 @@ This react starter kit use latest laravel structure and also follow the new shad
 ## Installation
 
 ```bash
-laravel new project-name --using=jaypalsapara/laravel-react-starter-kit --pnpm --no-boost
+composer create-project jaypalsapara/laravel-react-starter-kit --prefer-dist example-app --pnpm --no-boost
 ```
