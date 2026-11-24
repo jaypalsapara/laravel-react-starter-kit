@@ -28,7 +28,7 @@ void createInertiaApp({
         return <Provider>{app}</Provider>;
     },
     progress: {
-        color: '#4B5563',
+        showSpinner: false,
     },
 });
 
