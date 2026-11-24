@@ -21,7 +21,5 @@
     },
     "menuColor": "default",
     "menuAccent": "subtle",
-    "registries": {
-        "@jaypalsapara": "https://raw.githubusercontent.com/jaypalsapara/registry/main/public/r/{name}.json"
-    }
+    "registries": {}
 }

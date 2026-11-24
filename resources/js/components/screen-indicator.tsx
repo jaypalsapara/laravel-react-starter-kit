@@ -1,4 +1,4 @@
-import { cva, VariantProps } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from 'cn';
 import { Laptop, Monitor, Smartphone, Tablet, TvMinimal } from 'lucide-react';
 import { Icon } from '@/components/ui/icon';
@@ -7,15 +7,15 @@ interface Props {
     className?: string;
 }
 
-export const indicatorVariant = cva(
+const indicatorVariants = cva(
     "fixed z-9999 m-3 flex items-center justify-center gap-1 rounded-md p-1 px-1 pr-1.5 text-sm font-medium opacity-50 select-none hover:opacity-100 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='stroke-'])]:stroke-[2.5]",
     {
         variants: {
             variant: {
                 default: 'bg-primary text-primary-foreground',
                 secondary: 'bg-secondary text-secondary-foreground',
-                outline: 'border bg-background text-foreground',
-                ghost: 'bg-transparent text-foreground',
+                outline: 'bg-background text-foreground border',
+                ghost: 'text-foreground bg-transparent',
             },
             position: {
                 'top-left': 'top-0 left-0',
@@ -35,9 +35,11 @@ function ScreenIndicator({
     variant = 'default',
     position = 'bottom-left',
     className,
-}: Props & VariantProps<typeof indicatorVariant>) {
+}: Props & VariantProps<typeof indicatorVariants>) {
     return (
-        <div className={cn(indicatorVariant({ variant, position, className }))}>
+        <div
+            className={cn(indicatorVariants({ variant, position, className }))}
+        >
             <Icon
                 node={Smartphone}
                 className="hidden opacity-50 max-md:block"
@@ -59,4 +61,4 @@ function ScreenIndicator({
     );
 }
 
-export { ScreenIndicator };
+export { ScreenIndicator, indicatorVariants };
