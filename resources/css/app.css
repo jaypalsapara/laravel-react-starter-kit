@@ -140,4 +140,12 @@
     html {
         @apply font-sans;
     }
+
+    .switching-appearance {
+        transition: none !important;
+
+        & * {
+            transition: none !important;
+        }
+    }
 }

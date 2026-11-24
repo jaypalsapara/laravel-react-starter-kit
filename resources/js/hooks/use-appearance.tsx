@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from 'react';
+import { useLayoutEffect, useSyncExternalStore, useTransition } from 'react';
 
 export type ResolvedAppearance = 'light' | 'dark';
 export type Appearance = ResolvedAppearance | 'system';
@@ -88,6 +88,16 @@ export function initializeTheme(): void {
 }
 
 export function useAppearance(): UseAppearanceReturn {
+    const [isSwitching, startSwitching] = useTransition();
+
+    useLayoutEffect(() => {
+        // Disable transition while switching appearance
+        document.documentElement.classList.toggle(
+            'switching-appearance',
+            isSwitching,
+        );
+    }, [isSwitching]);
+
     const appearance: Appearance = useSyncExternalStore(
         subscribe,
         () => currentAppearance,
@@ -99,16 +109,18 @@ export function useAppearance(): UseAppearanceReturn {
         : 'light';
 
     const updateAppearance = (mode: Appearance): void => {
-        currentAppearance = mode;
+        startSwitching(async () => {
+            currentAppearance = mode;
 
-        // Store in localStorage for client-side persistence...
-        localStorage.setItem('appearance', mode);
+            // Store in localStorage for client-side persistence...
+            localStorage.setItem('appearance', mode);
 
-        // Store in cookie for SSR...
-        setCookie('appearance', mode);
+            // Store in cookie for SSR...
+            setCookie('appearance', mode);
 
-        applyTheme(mode);
-        notify();
+            applyTheme(mode);
+            notify();
+        });
     };
 
     return { appearance, resolvedAppearance, updateAppearance } as const;

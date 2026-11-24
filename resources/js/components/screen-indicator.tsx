@@ -14,8 +14,8 @@ const indicatorVariants = cva(
             variant: {
                 default: 'bg-primary text-primary-foreground',
                 secondary: 'bg-secondary text-secondary-foreground',
-                outline: 'bg-background text-foreground border',
-                ghost: 'text-foreground bg-transparent',
+                outline: 'border bg-background text-foreground',
+                ghost: 'bg-transparent text-foreground',
             },
             position: {
                 'top-left': 'top-0 left-0',
