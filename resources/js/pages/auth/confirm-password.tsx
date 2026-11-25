@@ -10,52 +10,71 @@ import {
     store as confirmStore,
 } from '@/actions/Laravel/Passkeys/Http/Controllers/PasskeyConfirmationController';
 import PasskeyVerify from '@/components/passkey-verify';
+import {
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    FieldSeparator,
+    FieldSet,
+} from '@/components/ui/field';
 
 export default function ConfirmPassword() {
     return (
         <>
             <Head title="Confirm password" />
+            <FieldGroup>
+                <PasskeyVerify
+                    routes={{
+                        options: confirmOptions(),
+                        submit: confirmStore(),
+                    }}
+                    label="Confirm with passkey"
+                    loadingLabel="Confirming..."
+                />
+                <FieldSeparator>Or confirm with password</FieldSeparator>
 
-            <PasskeyVerify
-                routes={{
-                    options: confirmOptions(),
-                    submit: confirmStore(),
-                }}
-                label="Confirm with passkey"
-                loadingLabel="Confirming..."
-                separator="Or confirm with password"
-            />
-
-            <Form {...store.form()} resetOnSuccess={['password']}>
-                {({ processing, errors }) => (
-                    <div className="space-y-6">
-                        <div className="grid gap-2">
-                            <Label htmlFor="password">Password</Label>
-                            <PasswordInput
-                                id="password"
-                                name="password"
-                                placeholder="Password"
-                                autoComplete="current-password"
-                                autoFocus
-                            />
-
-                            <InputError message={errors.password} />
-                        </div>
-
-                        <div className="flex items-center">
-                            <Button
-                                type="submit"
-                                className="w-full"
-                                disabled={processing}
-                                data-test="confirm-password-button"
-                            >
-                                {processing && <Spinner />}
-                                Confirm password
-                            </Button>
-                        </div>
-                    </div>
-                )}
-            </Form>
+                <Form {...store.form()} resetOnSuccess={['password']}>
+                    {({ processing, errors }) => (
+                        <FieldGroup>
+                            <FieldSet>
+                                <FieldGroup>
+                                    <Field>
+                                        <FieldLabel htmlFor="password">
+                                            Password
+                                        </FieldLabel>
+                                        <PasswordInput
+                                            id="password"
+                                            name="password"
+                                            placeholder="Password"
+                                            autoComplete="current-password"
+                                            autoFocus
+                                        />
+                                        <FieldError>
+                                            {errors.password}
+                                        </FieldError>
+                                    </Field>
+                                </FieldGroup>
+                            </FieldSet>
+                            <FieldSet>
+                                <FieldGroup>
+                                    <Field>
+                                        <Button
+                                            type="submit"
+                                            className="w-full"
+                                            disabled={processing}
+                                            data-test="confirm-password-button"
+                                        >
+                                            {processing && <Spinner />}
+                                            Confirm password
+                                        </Button>
+                                    </Field>
+                                </FieldGroup>
+                            </FieldSet>
+                        </FieldGroup>
+                    )}
+                </Form>
+            </FieldGroup>
         </>
     );
 }
