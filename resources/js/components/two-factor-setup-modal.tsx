@@ -3,7 +3,6 @@ import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { Check, Copy, ScanLine } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import AlertError from '@/components/alert-error';
-import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import {
     Dialog,
@@ -23,6 +22,14 @@ import { useClipboard } from '@/hooks/use-clipboard';
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth';
 import { confirm } from '@/routes/two-factor';
 import { Icon } from '@/components/ui/icon';
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupButton,
+    InputGroupInput,
+} from './ui/input-group';
+import { Skeleton } from './ui/skeleton';
+import { Field, FieldError, FieldGroup, FieldSet } from './ui/field';
 
 function GridScanIcon() {
     return (
@@ -107,34 +114,33 @@ function TwoFactorSetupStep({
 
                     <div className="relative flex w-full items-center justify-center">
                         <div className="absolute inset-0 top-1/2 h-px w-full bg-border" />
-                        <span className="relative bg-card px-2 py-1">
-                            or, enter the code manually
+                        <span className="relative bg-card px-2 py-1 text-muted-foreground">
+                            Or enter the code manually
                         </span>
                     </div>
 
                     <div className="flex w-full space-x-2">
-                        <div className="flex w-full items-stretch overflow-hidden rounded-xl border border-border">
+                        <div className="flex w-full items-stretch">
                             {!manualSetupKey ? (
-                                <div className="flex h-full w-full items-center justify-center bg-muted p-3">
-                                    <Spinner />
-                                </div>
+                                <Skeleton className="h-9 w-full" />
                             ) : (
                                 <>
-                                    <input
-                                        type="text"
-                                        readOnly
-                                        value={manualSetupKey}
-                                        className="h-full w-full bg-background p-3 text-foreground outline-none"
-                                    />
-                                    <button
-                                        onClick={() => copy(manualSetupKey)}
-                                        className="border-l border-border px-3 hover:bg-muted"
-                                    >
-                                        <Icon
-                                            node={IconComponent}
-                                            className="w-4"
+                                    <InputGroup>
+                                        <InputGroupInput
+                                            type="text"
+                                            readOnly
+                                            value={manualSetupKey}
                                         />
-                                    </button>
+                                        <InputGroupAddon align={'inline-end'}>
+                                            <InputGroupButton
+                                                onClick={() =>
+                                                    copy(manualSetupKey)
+                                                }
+                                            >
+                                                <Icon node={IconComponent} />
+                                            </InputGroupButton>
+                                        </InputGroupAddon>
+                                    </InputGroup>
                                 </>
                             )}
                         </div>
@@ -167,6 +173,7 @@ function TwoFactorVerificationStep({
             onSuccess={() => onClose()}
             resetOnError
             resetOnSuccess
+            className="w-full"
         >
             {({
                 processing,
@@ -176,60 +183,69 @@ function TwoFactorVerificationStep({
                 errors?: { confirmTwoFactorAuthentication?: { code?: string } };
             }) => (
                 <>
-                    <div
-                        ref={pinInputContainerRef}
-                        className="relative w-full space-y-3"
-                    >
-                        <div className="flex w-full flex-col items-center space-y-3 py-2">
-                            <InputOTP
-                                id="otp"
-                                name="code"
-                                maxLength={OTP_MAX_LENGTH}
-                                onChange={setCode}
-                                disabled={processing}
-                                pattern={REGEXP_ONLY_DIGITS}
-                                autoFocus
-                            >
-                                <InputOTPGroup>
-                                    {Array.from(
-                                        { length: OTP_MAX_LENGTH },
-                                        (_, index) => (
-                                            <InputOTPSlot
-                                                key={index}
-                                                index={index}
-                                            />
-                                        ),
-                                    )}
-                                </InputOTPGroup>
-                            </InputOTP>
-                            <InputError
-                                message={
-                                    errors?.confirmTwoFactorAuthentication?.code
-                                }
-                            />
-                        </div>
-
-                        <div className="flex w-full space-x-5">
-                            <Button
-                                type="button"
-                                variant="outline"
-                                className="flex-1"
-                                onClick={onBack}
-                                disabled={processing}
-                            >
-                                Back
-                            </Button>
-                            <Button
-                                type="submit"
-                                className="flex-1"
-                                disabled={
-                                    processing || code.length < OTP_MAX_LENGTH
-                                }
-                            >
-                                Confirm
-                            </Button>
-                        </div>
-                    </div>
+                    <FieldGroup ref={pinInputContainerRef}>
+                        <FieldSet>
+                            <FieldGroup>
+                                <Field
+                                    orientation={'horizontal'}
+                                    className="justify-center"
+                                >
+                                    <InputOTP
+                                        id="otp"
+                                        name="code"
+                                        maxLength={OTP_MAX_LENGTH}
+                                        onChange={setCode}
+                                        disabled={processing}
+                                        pattern={REGEXP_ONLY_DIGITS}
+                                        autoFocus
+                                    >
+                                        <InputOTPGroup className="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl">
+                                            {Array.from(
+                                                { length: OTP_MAX_LENGTH },
+                                                (_, index) => (
+                                                    <InputOTPSlot
+                                                        key={index}
+                                                        index={index}
+                                                    />
+                                                ),
+                                            )}
+                                        </InputOTPGroup>
+                                    </InputOTP>
+                                    <FieldError>
+                                        {
+                                            errors
+                                                ?.confirmTwoFactorAuthentication
+                                                ?.code
+                                        }
+                                    </FieldError>
+                                </Field>
+                            </FieldGroup>
+                        </FieldSet>
+                        <FieldSet>
+                            <FieldGroup>
+                                <Field>
+                                    <Button
+                                        type="submit"
+                                        className={'w-full'}
+                                        disabled={
+                                            processing ||
+                                            code.length < OTP_MAX_LENGTH
+                                        }
+                                    >
+                                        Confirm
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        onClick={onBack}
+                                        disabled={processing}
+                                    >
+                                        Back
+                                    </Button>
+                                </Field>
+                            </FieldGroup>
+                        </FieldSet>
+                    </FieldGroup>
                 </>
             )}
         </Form>
@@ -334,7 +350,9 @@ export default function TwoFactorSetupModal({
             <DialogContent className="sm:max-w-md">
                 <DialogHeader className="flex items-center justify-center">
                     <GridScanIcon />
-                    <DialogTitle>{modalConfig.title}</DialogTitle>
+                    <DialogTitle className={'text-base'}>
+                        {modalConfig.title}
+                    </DialogTitle>
                     <DialogDescription className="text-center">
                         {modalConfig.description}
                     </DialogDescription>

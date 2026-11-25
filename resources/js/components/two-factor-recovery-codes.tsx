@@ -56,7 +56,7 @@ export default function TwoFactorRecoveryCodes({
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="flex gap-3">
+                <CardTitle className="flex items-center gap-2">
                     <Icon
                         node={LockKeyhole}
                         className="size-4"

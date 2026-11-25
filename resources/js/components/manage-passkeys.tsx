@@ -9,13 +9,11 @@ import type { Passkey } from '@/types/auth';
 import { ItemGroup } from '@/components/ui/item';
 import {
     Empty,
-    EmptyContent,
     EmptyDescription,
     EmptyHeader,
     EmptyMedia,
     EmptyTitle,
 } from '@/components/ui/empty';
-import { Button } from '@/components/ui/button';
 
 export type Props = {
     canManagePasskeys?: boolean;
