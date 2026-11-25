@@ -21,11 +21,16 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
         ->middleware(RequirePassword::class)
         ->name('security.edit');
 
+    Route::inertia('settings/security/two-factor-recovery-codes','settings/two-factor-recovery-codes')
+        ->middleware(RequirePassword::class)
+        ->name('security.two-factor-recovery-codes');
+
     Route::put('settings/password', [SecurityController::class, 'update'])
         ->middleware('throttle:6,1')
         ->name('user-password.update');
 
     Route::inertia('settings/appearance', 'settings/appearance')->name('appearance.edit');
+
 });
 
 Route::get('.well-known/passkey-endpoints', fn () => response()->json([

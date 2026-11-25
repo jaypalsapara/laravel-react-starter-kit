@@ -1,13 +1,26 @@
-import { Form } from '@inertiajs/react';
+import { Form, Link } from '@inertiajs/react';
 import { ShieldCheck } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import Heading from '@/components/heading';
 import TwoFactorRecoveryCodes from '@/components/two-factor-recovery-codes';
 import TwoFactorSetupModal from '@/components/two-factor-setup-modal';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { useTwoFactorAuth } from '@/hooks/use-two-factor-auth';
 import { disable, enable } from '@/routes/two-factor';
+import { cn } from 'cn';
+import security from '@/routes/security';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 export type Props = {
     canManageTwoFactor?: boolean;
@@ -60,25 +73,57 @@ export default function ManageTwoFactor(props: Props) {
                         application on your phone.
                     </p>
 
-                    <div className="relative inline">
-                        <Form {...disable.form()}>
-                            {({ processing }) => (
-                                <Button
-                                    variant="destructive"
-                                    type="submit"
-                                    disabled={processing}
-                                >
-                                    Disable 2FA
-                                </Button>
+                    <div className="relative flex items-center gap-2">
+                        <Link
+                            href={security.twoFactorRecoveryCodes()}
+                            className={cn(
+                                buttonVariants({ variant: 'outline' }),
                             )}
-                        </Form>
-                    </div>
+                        >
+                            View recovery codes
+                        </Link>
+                        <AlertDialog>
+                            <AlertDialogTrigger
+                                render={<Button variant="ghost" />}
+                            >
+                                Disable 2FA
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>
+                                        Disable two-factor authentication?
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        You will no longer need a second
+                                        verification step when signing in.
+                                        <br />
+                                        <br />
+                                        <strong>Recommendation:</strong> Keep
+                                        two-factor authentication enabled to
+                                        protect your account, even if your
+                                        password is compromised.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>
+                                        Cancel
+                                    </AlertDialogCancel>
 
-                    <TwoFactorRecoveryCodes
-                        recoveryCodesList={recoveryCodesList}
-                        fetchRecoveryCodes={fetchRecoveryCodes}
-                        errors={errors}
-                    />
+                                    <Form {...disable.form()}>
+                                        {({ processing }) => (
+                                            <AlertDialogAction
+                                                type="submit"
+                                                variant={'destructive'}
+                                                disabled={processing}
+                                            >
+                                                Disable 2FA
+                                            </AlertDialogAction>
+                                        )}
+                                    </Form>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+                    </div>
                 </div>
             ) : (
                 <div className="flex flex-col items-start justify-start space-y-4">
