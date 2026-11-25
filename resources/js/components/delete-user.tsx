@@ -5,16 +5,18 @@ import Heading from '@/components/heading';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import { Button } from '@/components/ui/button';
-import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogTitle,
-    DialogTrigger,
-} from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 export default function DeleteUser() {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -34,8 +36,8 @@ export default function DeleteUser() {
                     </p>
                 </div>
 
-                <Dialog>
-                    <DialogTrigger
+                <AlertDialog>
+                    <AlertDialogTrigger
                         render={
                             <Button
                                 variant="destructive"
@@ -44,17 +46,15 @@ export default function DeleteUser() {
                         }
                     >
                         Delete account
-                    </DialogTrigger>
-                    <DialogContent>
-                        <DialogTitle>
-                            Are you sure you want to delete your account?
-                        </DialogTitle>
-                        <DialogDescription>
-                            Once your account is deleted, all of its resources
-                            and data will also be permanently deleted. Please
-                            enter your password to confirm you would like to
-                            permanently delete your account.
-                        </DialogDescription>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>Delete account?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                Deleting your account permanently removes all
+                                data.
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
 
                         <Form
                             {...ProfileController.destroy.form()}
@@ -86,34 +86,28 @@ export default function DeleteUser() {
                                         <InputError message={errors.password} />
                                     </div>
 
-                                    <DialogFooter className="gap-2">
-                                        <DialogClose
-                                            render={
-                                                <Button
-                                                    variant="secondary"
-                                                    onClick={() =>
-                                                        resetAndClearErrors()
-                                                    }
-                                                />
+                                    <AlertDialogFooter className="gap-2">
+                                        <AlertDialogCancel
+                                            onClick={() =>
+                                                resetAndClearErrors()
                                             }
                                         >
                                             Cancel
-                                        </DialogClose>
-
-                                        <Button
+                                        </AlertDialogCancel>
+                                        <AlertDialogAction
                                             variant="destructive"
                                             disabled={processing}
                                             type="submit"
                                             data-test="confirm-delete-user-button"
                                         >
                                             Delete account
-                                        </Button>
-                                    </DialogFooter>
+                                        </AlertDialogAction>
+                                    </AlertDialogFooter>
                                 </>
                             )}
                         </Form>
-                    </DialogContent>
-                </Dialog>
+                    </AlertDialogContent>
+                </AlertDialog>
             </div>
         </div>
     );
