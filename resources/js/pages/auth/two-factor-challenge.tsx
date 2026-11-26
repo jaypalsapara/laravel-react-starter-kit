@@ -16,6 +16,7 @@ import {
     FieldError,
     FieldGroup,
 } from '@/components/ui/field';
+import TextLink, { textLinkVariants } from '@/components/text-link';
 
 export default function TwoFactorChallenge() {
     const [showRecoveryInput, setShowRecoveryInput] = useState<boolean>(false);
@@ -120,18 +121,15 @@ export default function TwoFactorChallenge() {
                             </Button>
                             <FieldDescription className="text-center">
                                 <span>or you can </span>
-                                <Button
-                                    variant={'link'}
-                                    size={'text'}
-                                    className={
-                                        'font-normal underline decoration-primary/20 hover:decoration-primary'
-                                    }
+                                <button
+                                    type="button"
+                                    className={textLinkVariants()}
                                     onClick={() =>
                                         toggleRecoveryMode(clearErrors)
                                     }
                                 >
                                     {authConfigContent.toggleText}
-                                </Button>
+                                </button>
                             </FieldDescription>
                         </Field>
                     </FieldGroup>

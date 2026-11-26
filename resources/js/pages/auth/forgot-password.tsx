@@ -9,6 +9,13 @@ import { Label } from '@/components/ui/label';
 import { login } from '@/routes';
 import { email } from '@/routes/password';
 import { Icon } from '@/components/ui/icon';
+import {
+    Field,
+    FieldDescription,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+} from '@/components/ui/field';
 
 export default function ForgotPassword({ status }: { status?: string }) {
     return (
@@ -25,44 +32,47 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 <Form {...email.form()}>
                     {({ processing, errors }) => (
                         <>
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    name="email"
-                                    autoComplete="off"
-                                    autoFocus
-                                    placeholder="email@example.com"
-                                />
-
-                                <InputError message={errors.email} />
-                            </div>
-
-                            <div className="my-6 flex items-center justify-start">
-                                <Button
-                                    type="submit"
-                                    className="w-full"
-                                    disabled={processing}
-                                    data-test="email-password-reset-link-button"
-                                >
-                                    {processing && (
-                                        <Icon
-                                            node={LoaderCircle}
-                                            className="h-4 w-4 animate-spin"
-                                        />
-                                    )}
-                                    Email password reset link
-                                </Button>
-                            </div>
+                            <FieldGroup>
+                                <Field>
+                                    <FieldLabel htmlFor="email">
+                                        Email address
+                                    </FieldLabel>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        autoComplete="off"
+                                        autoFocus
+                                        placeholder="email@example.com"
+                                    />
+                                    <FieldError>{errors.email}</FieldError>
+                                </Field>
+                                <Field>
+                                    <Button
+                                        type="submit"
+                                        className="w-full"
+                                        disabled={processing}
+                                        data-test="email-password-reset-link-button"
+                                    >
+                                        {processing && (
+                                            <Icon
+                                                node={LoaderCircle}
+                                                className="h-4 w-4 animate-spin"
+                                            />
+                                        )}
+                                        Email password reset link
+                                    </Button>
+                                    <FieldDescription className="text-center">
+                                        <span>Or, return to </span>
+                                        <TextLink href={login()}>
+                                            log in
+                                        </TextLink>
+                                    </FieldDescription>
+                                </Field>
+                            </FieldGroup>
                         </>
                     )}
                 </Form>
-
-                <div className="space-x-1 text-center text-sm text-muted-foreground">
-                    <span>Or, return to</span>
-                    <TextLink href={login()}>log in</TextLink>
-                </div>
             </div>
         </>
     );

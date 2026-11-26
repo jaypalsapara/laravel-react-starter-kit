@@ -4,6 +4,21 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import {
+    Frame,
+    FrameContent,
+    FrameFooter,
+    FrameHeader,
+    FrameTitle,
+} from './frame';
+import {
+    Field,
+    FieldDescription,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+} from './ui/field';
+import { Card, CardContent, CardFooter } from './ui/card';
 
 type Props = {
     onSuccess: () => void;
@@ -73,36 +88,51 @@ export default function PasskeyRegistration({ onSuccess }: Props) {
     }
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="space-y-4 rounded-lg border border-border bg-muted/50 p-4"
-        >
-            <div className="grid gap-2">
-                <Label htmlFor="passkey-name">Passkey name</Label>
-                <Input
-                    id="passkey-name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g., MacBook Pro, iPhone"
-                    className="block w-full border-foreground/20"
-                    autoFocus
-                />
-                <p className="text-xs text-muted-foreground">
-                    A name helps you identify this passkey later.
-                </p>
-            </div>
+        <form onSubmit={handleSubmit}>
+            <Card size="sm">
+                <CardContent>
+                    <FieldGroup>
+                        <Field>
+                            <FieldLabel htmlFor="passkey-name">
+                                Passkey name
+                            </FieldLabel>
 
-            {error && <InputError message={error} />}
+                            <Input
+                                id="passkey-name"
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="e.g., MacBook Pro, iPhone"
+                                autoFocus
+                            />
 
-            <div className="flex gap-2">
-                <Button type="submit" disabled={isLoading || !name.trim()}>
-                    {isLoading ? 'Registering...' : 'Register passkey'}
-                </Button>
-                <Button type="button" variant="ghost" onClick={handleCancel}>
-                    Cancel
-                </Button>
-            </div>
+                            <FieldDescription>
+                                A name helps you identify this passkey later.
+                            </FieldDescription>
+
+                            <FieldError>{error}</FieldError>
+                        </Field>
+                    </FieldGroup>
+                </CardContent>
+                <CardFooter>
+                    <Field orientation={'horizontal'}>
+                        <Button
+                            type="submit"
+                            disabled={isLoading || !name.trim()}
+                        >
+                            {isLoading ? 'Registering...' : 'Register passkey'}
+                        </Button>
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            onClick={handleCancel}
+                            className={'text-foreground'}
+                        >
+                            Cancel
+                        </Button>
+                    </Field>
+                </CardFooter>
+            </Card>
         </form>
     );
 }

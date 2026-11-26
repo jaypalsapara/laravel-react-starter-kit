@@ -8,6 +8,13 @@ import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import { login } from '@/routes';
 import { store } from '@/routes/register';
+import {
+    Field,
+    FieldDescription,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+} from '@/components/ui/field';
 
 type Props = {
     passwordRules: string;
@@ -25,9 +32,9 @@ export default function Register({ passwordRules }: Props) {
             >
                 {({ processing, errors }) => (
                     <>
-                        <div className="grid gap-6">
-                            <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                        <FieldGroup>
+                            <Field>
+                                <FieldLabel htmlFor="name">Name</FieldLabel>
                                 <Input
                                     id="name"
                                     type="text"
@@ -38,14 +45,12 @@ export default function Register({ passwordRules }: Props) {
                                     name="name"
                                     placeholder="Full name"
                                 />
-                                <InputError
-                                    message={errors.name}
-                                    className="mt-2"
-                                />
-                            </div>
-
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                                <FieldError>{errors.name}</FieldError>
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="email">
+                                    Email address
+                                </FieldLabel>
                                 <Input
                                     id="email"
                                     type="email"
@@ -55,11 +60,12 @@ export default function Register({ passwordRules }: Props) {
                                     name="email"
                                     placeholder="email@example.com"
                                 />
-                                <InputError message={errors.email} />
-                            </div>
-
-                            <div className="grid gap-2">
-                                <Label htmlFor="password">Password</Label>
+                                <FieldError>{errors.email}</FieldError>
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="password">
+                                    Password
+                                </FieldLabel>
                                 <PasswordInput
                                     id="password"
                                     required
@@ -69,13 +75,12 @@ export default function Register({ passwordRules }: Props) {
                                     placeholder="Password"
                                     passwordrules={passwordRules}
                                 />
-                                <InputError message={errors.password} />
-                            </div>
-
-                            <div className="grid gap-2">
-                                <Label htmlFor="password_confirmation">
+                                <FieldError>{errors.password}</FieldError>
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="password_confirmation">
                                     Confirm password
-                                </Label>
+                                </FieldLabel>
                                 <PasswordInput
                                     id="password_confirmation"
                                     required
@@ -85,28 +90,28 @@ export default function Register({ passwordRules }: Props) {
                                     placeholder="Confirm password"
                                     passwordrules={passwordRules}
                                 />
-                                <InputError
-                                    message={errors.password_confirmation}
-                                />
-                            </div>
-
-                            <Button
-                                type="submit"
-                                className="mt-2 w-full"
-                                tabIndex={5}
-                                data-test="register-user-button"
-                            >
-                                {processing && <Spinner />}
-                                Create account
-                            </Button>
-                        </div>
-
-                        <div className="text-center text-sm text-muted-foreground">
-                            Already have an account?{' '}
-                            <TextLink href={login()} tabIndex={6}>
-                                Log in
-                            </TextLink>
-                        </div>
+                                <FieldError>
+                                    {errors.password_confirmation}
+                                </FieldError>
+                            </Field>
+                            <Field>
+                                <Button
+                                    type="submit"
+                                    className="w-full"
+                                    tabIndex={5}
+                                    data-test="register-user-button"
+                                >
+                                    {processing && <Spinner />}
+                                    Create account
+                                </Button>
+                                <FieldDescription className="text-center">
+                                    Already have an account?{' '}
+                                    <TextLink href={login()} tabIndex={6}>
+                                        Log in
+                                    </TextLink>
+                                </FieldDescription>
+                            </Field>
+                        </FieldGroup>
                     </>
                 )}
             </Form>
