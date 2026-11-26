@@ -1,7 +1,6 @@
 import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { useMemo, useState } from 'react';
-import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -11,6 +10,13 @@ import {
 } from '@/components/ui/input-otp';
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth';
 import { store } from '@/routes/two-factor/login';
+import {
+    Field,
+    FieldDescription,
+    FieldError,
+    FieldGroup,
+} from '@/components/ui/field';
+import { textLinkVariants } from '@/components/text-link';
 
 export default function TwoFactorChallenge() {
     const [showRecoveryInput, setShowRecoveryInput] = useState<boolean>(false);
@@ -53,17 +59,17 @@ export default function TwoFactorChallenge() {
         <>
             <Head title="Two-factor authentication" />
 
-            <div className="space-y-6">
-                <Form
-                    {...store.form()}
-                    className="space-y-4"
-                    resetOnError
-                    resetOnSuccess={!showRecoveryInput}
-                >
-                    {({ errors, processing, clearErrors }) => (
-                        <>
-                            {showRecoveryInput ? (
-                                <>
+            <Form
+                {...store.form()}
+                className="space-y-4"
+                resetOnError
+                resetOnSuccess={!showRecoveryInput}
+            >
+                {({ errors, processing, clearErrors }) => (
+                    <FieldGroup>
+                        {showRecoveryInput ? (
+                            <>
+                                <Field>
                                     <Input
                                         name="recovery_code"
                                         type="text"
@@ -71,39 +77,41 @@ export default function TwoFactorChallenge() {
                                         autoFocus={showRecoveryInput}
                                         required
                                     />
-                                    <InputError
-                                        message={errors.recovery_code}
-                                    />
-                                </>
-                            ) : (
-                                <div className="flex flex-col items-center justify-center space-y-3 text-center">
-                                    <div className="flex w-full items-center justify-center">
-                                        <InputOTP
-                                            name="code"
-                                            maxLength={OTP_MAX_LENGTH}
-                                            value={code}
-                                            onChange={(value) => setCode(value)}
-                                            disabled={processing}
-                                            pattern={REGEXP_ONLY_DIGITS}
-                                            autoFocus
-                                        >
-                                            <InputOTPGroup>
-                                                {Array.from(
-                                                    { length: OTP_MAX_LENGTH },
-                                                    (_, index) => (
-                                                        <InputOTPSlot
-                                                            key={index}
-                                                            index={index}
-                                                        />
-                                                    ),
-                                                )}
-                                            </InputOTPGroup>
-                                        </InputOTP>
-                                    </div>
-                                    <InputError message={errors.code} />
+                                    <FieldError>
+                                        {errors.recovery_code}
+                                    </FieldError>
+                                </Field>
+                            </>
+                        ) : (
+                            <Field>
+                                <div className="flex w-full items-center justify-center">
+                                    <InputOTP
+                                        name="code"
+                                        maxLength={OTP_MAX_LENGTH}
+                                        value={code}
+                                        onChange={(value) => setCode(value)}
+                                        disabled={processing}
+                                        pattern={REGEXP_ONLY_DIGITS}
+                                        autoFocus
+                                    >
+                                        <InputOTPGroup className="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl">
+                                            {Array.from(
+                                                { length: OTP_MAX_LENGTH },
+                                                (_, index) => (
+                                                    <InputOTPSlot
+                                                        key={index}
+                                                        index={index}
+                                                    />
+                                                ),
+                                            )}
+                                        </InputOTPGroup>
+                                    </InputOTP>
                                 </div>
-                            )}
+                                <FieldError>{errors.code}</FieldError>
+                            </Field>
+                        )}
 
+                        <Field>
                             <Button
                                 type="submit"
                                 className="w-full"
@@ -111,23 +119,22 @@ export default function TwoFactorChallenge() {
                             >
                                 Continue
                             </Button>
-
-                            <div className="text-center text-sm text-muted-foreground">
+                            <FieldDescription className="text-center">
                                 <span>or you can </span>
                                 <button
                                     type="button"
-                                    className="cursor-pointer text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
+                                    className={textLinkVariants()}
                                     onClick={() =>
                                         toggleRecoveryMode(clearErrors)
                                     }
                                 >
                                     {authConfigContent.toggleText}
                                 </button>
-                            </div>
-                        </>
-                    )}
-                </Form>
-            </div>
+                            </FieldDescription>
+                        </Field>
+                    </FieldGroup>
+                )}
+            </Form>
         </>
     );
 }

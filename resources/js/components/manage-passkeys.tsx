@@ -6,6 +6,14 @@ import PasskeyItem from '@/components/passkey-item';
 import PasskeyRegistration from '@/components/passkey-register';
 import { Icon } from '@/components/ui/icon';
 import type { Passkey } from '@/types/auth';
+import { ItemGroup } from '@/components/ui/item';
+import {
+    Empty,
+    EmptyDescription,
+    EmptyHeader,
+    EmptyMedia,
+    EmptyTitle,
+} from '@/components/ui/empty';
 
 export type Props = {
     canManagePasskeys?: boolean;
@@ -14,18 +22,17 @@ export type Props = {
 
 const EmptyState = () => {
     return (
-        <div className="p-8 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
-                <Icon
-                    node={KeyRound}
-                    className="h-7 w-7 text-muted-foreground"
-                />
-            </div>
-            <p className="font-medium">No passkeys yet</p>
-            <p className="mt-1 text-sm text-muted-foreground">
-                Add a passkey to log in without a password
-            </p>
-        </div>
+        <Empty className="border">
+            <EmptyHeader>
+                <EmptyMedia variant="icon">
+                    <Icon node={KeyRound} className="text-muted-foreground" />
+                </EmptyMedia>
+                <EmptyTitle className="text-base">No passkeys yet</EmptyTitle>
+                <EmptyDescription>
+                    Add a passkey to log in without a password
+                </EmptyDescription>
+            </EmptyHeader>
+        </Empty>
     );
 };
 
@@ -55,19 +62,21 @@ export default function ManagePasskeys(props: Props) {
                 description="Manage your passkeys for passwordless sign-in"
             />
 
-            <div className="overflow-hidden rounded-lg border border-border">
-                {passkeys.length > 0 ? (
-                    passkeys.map((passkey) => (
-                        <PasskeyItem
-                            key={passkey.id}
-                            passkey={passkey}
-                            onDelete={handleDelete}
-                        />
-                    ))
-                ) : (
-                    <EmptyState />
-                )}
-            </div>
+            {passkeys.length > 0 ? (
+                <>
+                    <ItemGroup>
+                        {passkeys.map((passkey) => (
+                            <PasskeyItem
+                                key={passkey.id}
+                                passkey={passkey}
+                                onDelete={handleDelete}
+                            />
+                        ))}
+                    </ItemGroup>
+                </>
+            ) : (
+                <EmptyState />
+            )}
 
             <PasskeyRegistration onSuccess={handleRegisterSuccess} />
         </div>
