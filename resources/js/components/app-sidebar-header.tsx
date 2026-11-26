@@ -2,6 +2,7 @@ import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
 import { cn } from 'cn';
+import { Separator } from './ui/separator';
 
 export function AppSidebarHeader({
     breadcrumbs = [],
@@ -19,6 +20,10 @@ export function AppSidebarHeader({
         >
             <div className="flex items-center gap-2">
                 <SidebarTrigger className="-ml-1" />
+                <Separator
+                    orientation="vertical"
+                    className={'me-2 h-4 self-center!'}
+                />
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>
         </header>
