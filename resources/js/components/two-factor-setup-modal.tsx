@@ -186,32 +186,31 @@ function TwoFactorVerificationStep({
                     <FieldGroup ref={pinInputContainerRef}>
                         <FieldSet>
                             <FieldGroup>
-                                <Field
-                                    orientation={'horizontal'}
-                                    className="justify-center"
-                                >
-                                    <InputOTP
-                                        id="otp"
-                                        name="code"
-                                        maxLength={OTP_MAX_LENGTH}
-                                        onChange={setCode}
-                                        disabled={processing}
-                                        pattern={REGEXP_ONLY_DIGITS}
-                                        autoFocus
-                                    >
-                                        <InputOTPGroup className="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl">
-                                            {Array.from(
-                                                { length: OTP_MAX_LENGTH },
-                                                (_, index) => (
-                                                    <InputOTPSlot
-                                                        key={index}
-                                                        index={index}
-                                                    />
-                                                ),
-                                            )}
-                                        </InputOTPGroup>
-                                    </InputOTP>
-                                    <FieldError>
+                                <Field>
+                                    <div className="flex flex-col items-center justify-center">
+                                        <InputOTP
+                                            id="otp"
+                                            name="code"
+                                            maxLength={OTP_MAX_LENGTH}
+                                            onChange={setCode}
+                                            disabled={processing}
+                                            pattern={REGEXP_ONLY_DIGITS}
+                                            autoFocus
+                                        >
+                                            <InputOTPGroup className="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl">
+                                                {Array.from(
+                                                    { length: OTP_MAX_LENGTH },
+                                                    (_, index) => (
+                                                        <InputOTPSlot
+                                                            key={index}
+                                                            index={index}
+                                                        />
+                                                    ),
+                                                )}
+                                            </InputOTPGroup>
+                                        </InputOTP>
+                                    </div>
+                                    <FieldError className="text-center">
                                         {
                                             errors
                                                 ?.confirmTwoFactorAuthentication
@@ -350,9 +349,7 @@ export default function TwoFactorSetupModal({
             <DialogContent className="sm:max-w-md">
                 <DialogHeader className="flex items-center justify-center">
                     <GridScanIcon />
-                    <DialogTitle className={'text-base'}>
-                        {modalConfig.title}
-                    </DialogTitle>
+                    <DialogTitle>{modalConfig.title}</DialogTitle>
                     <DialogDescription className="text-center">
                         {modalConfig.description}
                     </DialogDescription>

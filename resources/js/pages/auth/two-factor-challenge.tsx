@@ -16,7 +16,7 @@ import {
     FieldError,
     FieldGroup,
 } from '@/components/ui/field';
-import TextLink, { textLinkVariants } from '@/components/text-link';
+import { textLinkVariants } from '@/components/text-link';
 
 export default function TwoFactorChallenge() {
     const [showRecoveryInput, setShowRecoveryInput] = useState<boolean>(false);

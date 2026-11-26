@@ -43,7 +43,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
             <div className="flex flex-col lg:flex-row lg:space-x-12">
                 <aside className="w-full max-w-xl lg:w-48">
                     <nav
-                        className="flex scroll-fade-x scrollbar-none space-x-1 max-lg:scroll-fade-x max-lg:overflow-x-auto lg:flex-col lg:space-y-1 lg:space-x-0"
+                        className="flex scrollbar-none space-x-1 max-lg:scroll-fade-x max-lg:overflow-x-auto lg:flex-col lg:space-y-1 lg:space-x-0"
                         aria-label="Settings"
                     >
                         {sidebarNavItems.map((item, index) => (
@@ -52,7 +52,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                                 key={`${toUrl(item.href)}-${index}`}
                                 className={cn(
                                     buttonVariants({
-                                        size: 'sm',
+                                        size: 'default',
                                         variant: 'ghost',
                                     }),
                                     'justify-start',

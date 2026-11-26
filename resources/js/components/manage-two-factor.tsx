@@ -2,7 +2,6 @@ import { Form, Link } from '@inertiajs/react';
 import { ShieldCheck } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import Heading from '@/components/heading';
-import TwoFactorRecoveryCodes from '@/components/two-factor-recovery-codes';
 import TwoFactorSetupModal from '@/components/two-factor-setup-modal';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
@@ -39,8 +38,6 @@ export default function ManageTwoFactor(props: Props) {
         clearSetupData,
         clearTwoFactorAuthData,
         fetchSetupData,
-        recoveryCodesList,
-        fetchRecoveryCodes,
         errors,
     } = useTwoFactorAuth();
     const [showSetupModal, setShowSetupModal] = useState<boolean>(false);
@@ -109,7 +106,10 @@ export default function ManageTwoFactor(props: Props) {
                                         Cancel
                                     </AlertDialogCancel>
 
-                                    <Form {...disable.form()}>
+                                    <Form
+                                        {...disable.form()}
+                                        className="contents"
+                                    >
                                         {({ processing }) => (
                                             <AlertDialogAction
                                                 type="submit"

@@ -69,7 +69,7 @@ export default function PasskeyItem({ passkey, onDelete }: Props) {
             <ItemActions>
                 <AlertDialog>
                     <AlertDialogTrigger
-                        render={<Button variant="ghost" size="icon-sm" />}
+                        render={<Button variant="ghost" size="icon" />}
                     >
                         <Icon node={Trash2} className="h-4 w-4" />
                         <span className="sr-only">Remove</span>

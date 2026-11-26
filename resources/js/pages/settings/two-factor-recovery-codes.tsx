@@ -5,22 +5,15 @@ import { useTwoFactorAuth } from '@/hooks/use-two-factor-auth';
 import { regenerateRecoveryCodes } from '@/routes/two-factor';
 import { Form, Head } from '@inertiajs/react';
 import { Download, RefreshCw } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
     CodeBlock,
     CodeBlockActions,
     CodeBlockContent,
     CodeBlockCopyButton,
-    CodeBlockFooter,
-    CodeBlockHeader,
-    CodeBlockLine,
-    CodeBlockTitle,
 } from '@/components/ui/code-block';
-import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from 'cn';
-import { Frame, FrameContent } from '@/components/frame';
 import AlertError from '@/components/alert-error';
-import Security from './security';
 import security, { edit } from '@/routes/security';
 
 export default function TwoFactorRecoveryCodes() {
@@ -49,10 +42,10 @@ export default function TwoFactorRecoveryCodes() {
     const codes = (
         recoveryCodesList.length
             ? recoveryCodesList.reduce((init, code) => `${init}\n${code}`, '')
-            : (Array.from({ length: 8 }).reduce(
-                  (init) => `${init}\nxxxxxxxxxx-xxxxxxxxxx`,
+            : Array.from({ length: 8 }).reduce(
+                  (init: string) => `${init}\nxxxxxxxxxx-xxxxxxxxxx`,
                   '',
-              ) as string)
+              )
     ).trim();
 
     return (
