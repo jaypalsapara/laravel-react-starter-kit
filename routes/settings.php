@@ -21,7 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
         ->middleware(RequirePassword::class)
         ->name('security.edit');
 
-    Route::inertia('settings/security/two-factor-recovery-codes','settings/two-factor-recovery-codes')
+    Route::inertia('settings/security/two-factor-recovery-codes', 'settings/two-factor-recovery-codes')
         ->middleware(RequirePassword::class)
         ->name('security.two-factor-recovery-codes');
 
