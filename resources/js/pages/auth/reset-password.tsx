@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import PasswordInput from '@/components/password-input';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,6 +10,8 @@ import {
     FieldGroup,
     FieldLabel,
 } from '@/components/ui/field';
+import { Form } from '@/components/form';
+import { resetPasswordSchema } from '@/schema/auth';
 
 type Props = {
     token: string;
@@ -24,6 +26,7 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
 
             <Form
                 {...update.form()}
+                schema={resetPasswordSchema}
                 transform={(data) => ({ ...data, token, email })}
                 resetOnSuccess={['password', 'password_confirmation']}
             >
@@ -39,6 +42,7 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
                                 value={email}
                                 className="block w-full"
                                 readOnly
+                                aria-invalid={!!errors.email}
                             />
                             <FieldError>{errors.email}</FieldError>
                         </Field>
@@ -52,6 +56,7 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
                                 autoFocus
                                 placeholder="Password"
                                 passwordrules={passwordRules}
+                                aria-invalid={!!errors.password}
                             />
                             <FieldError>{errors.password}</FieldError>
                         </Field>
@@ -66,6 +71,7 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
                                 className="block w-full"
                                 placeholder="Confirm password"
                                 passwordrules={passwordRules}
+                                aria-invalid={!!errors.password_confirmation}
                             />
                             <FieldError>
                                 {errors.password_confirmation}

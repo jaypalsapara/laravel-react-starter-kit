@@ -95,6 +95,9 @@ importers:
       vite:
         specifier: 'catalog:'
         version: '@voidzero-dev/vite-plus-core@8.3.8000(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.0.2)'
+      zod:
+        specifier: ^4.6.7
+        version: 4.6.7
     devDependencies:
       '@laravel/vite-plugin-wayfinder':
         specifier: ^0.1.11

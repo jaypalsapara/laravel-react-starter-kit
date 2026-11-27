@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import PasswordInput from '@/components/password-input';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
@@ -16,6 +16,8 @@ import {
     FieldSeparator,
     FieldSet,
 } from '@/components/ui/field';
+import { Form } from '@/components/form';
+import { confirmPasswordSchema } from '@/schema/auth';
 
 export default function ConfirmPassword() {
     return (
@@ -32,7 +34,11 @@ export default function ConfirmPassword() {
                 />
                 <FieldSeparator>Or confirm with password</FieldSeparator>
 
-                <Form {...store.form()} resetOnSuccess={['password']}>
+                <Form
+                    {...store.form()}
+                    schema={confirmPasswordSchema}
+                    resetOnSuccess={['password']}
+                >
                     {({ processing, errors }) => (
                         <FieldGroup>
                             <FieldSet>
@@ -47,6 +53,7 @@ export default function ConfirmPassword() {
                                             placeholder="Password"
                                             autoComplete="current-password"
                                             autoFocus
+                                            aria-invalid={!!errors.password}
                                         />
                                         <FieldError>
                                             {errors.password}

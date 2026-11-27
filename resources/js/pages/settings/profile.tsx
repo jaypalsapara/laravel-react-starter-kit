@@ -1,4 +1,4 @@
-import { Form, Head, usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
 import DeleteUser from '@/components/delete-user';
 import Heading from '@/components/heading';
@@ -15,6 +15,8 @@ import {
     FieldLabel,
 } from '@/components/ui/field';
 import TextLink from '@/components/text-link';
+import { Form } from '@/components/form';
+import { profileSchema } from '@/schema/user';
 
 type PageProps = {
     auth: Auth;
@@ -44,6 +46,7 @@ export default function Profile({
 
                 <Form
                     {...ProfileController.update.form()}
+                    schema={profileSchema}
                     options={{
                         preserveScroll: true,
                     }}
@@ -59,9 +62,9 @@ export default function Profile({
                                         className="block w-full"
                                         defaultValue={auth.user.name}
                                         name="name"
-                                        required
                                         autoComplete="name"
                                         placeholder="Full name"
+                                        aria-invalid={!!errors.name}
                                     />
                                     <FieldError>{errors.name}</FieldError>
                                 </Field>
@@ -75,9 +78,9 @@ export default function Profile({
                                         className="block w-full"
                                         defaultValue={auth.user.email}
                                         name="email"
-                                        required
                                         autoComplete="username"
                                         placeholder="Email address"
+                                        aria-invalid={!!errors.email}
                                     />
                                     <FieldError>{errors.email}</FieldError>
                                     {mustVerifyEmail &&

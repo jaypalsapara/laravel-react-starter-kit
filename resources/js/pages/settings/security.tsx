@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import { useRef } from 'react';
 import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController';
 import Heading from '@/components/heading';
@@ -15,6 +15,8 @@ import {
     FieldGroup,
     FieldLabel,
 } from '@/components/ui/field';
+import { Form } from '@/components/form';
+import { updatePasswordSchema } from '@/schema/user';
 
 // oxfmt-ignore
 type Props = {
@@ -41,6 +43,7 @@ export default function Security(props: Props) {
 
                 <Form
                     {...SecurityController.update.form()}
+                    schema={updatePasswordSchema}
                     options={{
                         preserveScroll: true,
                     }}
@@ -76,6 +79,7 @@ export default function Security(props: Props) {
                                         className="block w-full"
                                         autoComplete="current-password"
                                         placeholder="Current password"
+                                        aria-invalid={!!errors.current_password}
                                     />
 
                                     <FieldError>
@@ -96,6 +100,7 @@ export default function Security(props: Props) {
                                         autoComplete="new-password"
                                         placeholder="New password"
                                         passwordrules={props.passwordRules}
+                                        aria-invalid={!!errors.password}
                                     />
 
                                     <FieldError>{errors.password}</FieldError>
@@ -113,6 +118,9 @@ export default function Security(props: Props) {
                                         autoComplete="new-password"
                                         placeholder="Confirm password"
                                         passwordrules={props.passwordRules}
+                                        aria-invalid={
+                                            !!errors.password_confirmation
+                                        }
                                     />
 
                                     <FieldError>

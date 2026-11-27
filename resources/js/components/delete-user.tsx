@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react';
+import { Form } from '@/components/form';
 import { useRef } from 'react';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
 import Heading from '@/components/heading';
@@ -17,6 +17,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { confirmPasswordSchema } from '@/schema/auth';
 
 export default function DeleteUser() {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -58,6 +59,7 @@ export default function DeleteUser() {
 
                         <Form
                             {...ProfileController.destroy.form()}
+                            schema={confirmPasswordSchema}
                             options={{
                                 preserveScroll: true,
                             }}
@@ -81,6 +83,7 @@ export default function DeleteUser() {
                                             ref={passwordInput}
                                             placeholder="Password"
                                             autoComplete="current-password"
+                                            aria-invalid={!!errors.password}
                                         />
 
                                         <InputError message={errors.password} />
