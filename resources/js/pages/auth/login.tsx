@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,8 @@ import {
     FieldSeparator,
     FieldSet,
 } from '@/components/ui/field';
+import { Form } from '@/components/form';
+import { loginSchema } from '@/schema/auth';
 
 type Props = {
     status?: string;
@@ -32,7 +34,11 @@ export default function Login({ status, canResetPassword }: Props) {
             <FieldGroup>
                 <PasskeyVerify />
                 <FieldSeparator>Or continue with email</FieldSeparator>
-                <Form {...store.form()} resetOnSuccess={['password']}>
+                <Form
+                    {...store.form()}
+                    schema={loginSchema}
+                    resetOnSuccess={['password']}
+                >
                     {({ processing, errors }) => (
                         <>
                             <FieldGroup>
@@ -46,11 +52,11 @@ export default function Login({ status, canResetPassword }: Props) {
                                                 id="email"
                                                 type="email"
                                                 name="email"
-                                                required
                                                 autoFocus
                                                 tabIndex={1}
                                                 autoComplete="email"
                                                 placeholder="email@example.com"
+                                                aria-invalid={!!errors.email}
                                             />
                                             <FieldError>
                                                 {errors.email}
@@ -74,10 +80,10 @@ export default function Login({ status, canResetPassword }: Props) {
                                             <PasswordInput
                                                 id="password"
                                                 name="password"
-                                                required
                                                 tabIndex={2}
                                                 autoComplete="current-password"
                                                 placeholder="Password"
+                                                aria-invalid={!!errors.password}
                                             />
                                             <FieldError>
                                                 {errors.password}

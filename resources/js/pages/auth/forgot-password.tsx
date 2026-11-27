@@ -1,5 +1,5 @@
 // Components
-import { Form, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -14,6 +14,8 @@ import {
     FieldGroup,
     FieldLabel,
 } from '@/components/ui/field';
+import { Form } from '@/components/form';
+import { forgotPasswordSchema } from '@/schema/auth';
 
 export default function ForgotPassword({ status }: { status?: string }) {
     return (
@@ -27,7 +29,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
             )}
 
             <div className="space-y-6">
-                <Form {...email.form()}>
+                <Form {...email.form()} schema={forgotPasswordSchema}>
                     {({ processing, errors }) => (
                         <>
                             <FieldGroup>
@@ -42,6 +44,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                                         autoComplete="off"
                                         autoFocus
                                         placeholder="email@example.com"
+                                        aria-invalid={!!errors.email}
                                     />
                                     <FieldError>{errors.email}</FieldError>
                                 </Field>

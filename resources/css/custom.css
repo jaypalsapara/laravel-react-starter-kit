@@ -1,0 +1,43 @@
+@theme inline {
+    --animate-shake: shake 0.4s ease-in-out;
+
+    @keyframes shake {
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+        20%,
+        60% {
+            transform: translateX(-6px);
+        }
+        40%,
+        80% {
+            transform: translateX(6px);
+        }
+    }
+}
+
+@layer base {
+    .switching-appearance {
+        transition: none !important;
+
+        & * {
+            transition: none !important;
+        }
+    }
+
+    #nprogress .bar {
+        background: var(--progress-color) !important;
+    }
+
+    #nprogress .peg {
+        box-shadow:
+            0 0 10px var(--progress-color),
+            0 0 5px var(--progress-color) !important;
+    }
+
+    #nprogress .spinner-icon {
+        border-top-color: var(--progress-color) !important;
+        border-left-color: var(--progress-color) !important;
+    }
+}

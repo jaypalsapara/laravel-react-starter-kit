@@ -1,4 +1,4 @@
-import { Form, Head, setLayoutProps } from '@inertiajs/react';
+import { Head, setLayoutProps } from '@inertiajs/react';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,11 @@ import {
     FieldGroup,
 } from '@/components/ui/field';
 import { textLinkVariants } from '@/components/text-link';
+import { Form } from '@/components/form';
+import {
+    twoFactorCodeSchema,
+    twoFactorRecoveryCodeSchema,
+} from '@/schema/auth';
 
 export default function TwoFactorChallenge() {
     const [showRecoveryInput, setShowRecoveryInput] = useState<boolean>(false);
@@ -61,6 +66,11 @@ export default function TwoFactorChallenge() {
 
             <Form
                 {...store.form()}
+                schema={
+                    showRecoveryInput
+                        ? twoFactorRecoveryCodeSchema
+                        : twoFactorCodeSchema
+                }
                 className="space-y-4"
                 resetOnError
                 resetOnSuccess={!showRecoveryInput}
@@ -75,7 +85,7 @@ export default function TwoFactorChallenge() {
                                         type="text"
                                         placeholder="Enter recovery code"
                                         autoFocus={showRecoveryInput}
-                                        required
+                                        aria-invalid={!!errors.recovery_code}
                                     />
                                     <FieldError>
                                         {errors.recovery_code}
@@ -101,6 +111,9 @@ export default function TwoFactorChallenge() {
                                                     <InputOTPSlot
                                                         key={index}
                                                         index={index}
+                                                        aria-invalid={
+                                                            !!errors.code
+                                                        }
                                                     />
                                                 ),
                                             )}

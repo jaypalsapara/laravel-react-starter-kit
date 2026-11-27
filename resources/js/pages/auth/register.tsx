@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Spinner } from '@/components/ui/spinner';
 import { login } from '@/routes';
 import { store } from '@/routes/register';
+import { Form } from '@/components/form';
 import {
     Field,
     FieldDescription,
@@ -13,6 +14,7 @@ import {
     FieldGroup,
     FieldLabel,
 } from '@/components/ui/field';
+import { registerSchema } from '@/schema/auth';
 
 type Props = {
     passwordRules: string;
@@ -24,9 +26,9 @@ export default function Register({ passwordRules }: Props) {
             <Head title="Register" />
             <Form
                 {...store.form()}
+                schema={registerSchema}
                 resetOnSuccess={['password', 'password_confirmation']}
                 disableWhileProcessing
-                className="flex flex-col gap-6"
             >
                 {({ processing, errors }) => (
                     <>
@@ -36,12 +38,12 @@ export default function Register({ passwordRules }: Props) {
                                 <Input
                                     id="name"
                                     type="text"
-                                    required
                                     autoFocus
                                     tabIndex={1}
                                     autoComplete="name"
                                     name="name"
                                     placeholder="Full name"
+                                    aria-invalid={!!errors.name}
                                 />
                                 <FieldError>{errors.name}</FieldError>
                             </Field>
@@ -52,11 +54,11 @@ export default function Register({ passwordRules }: Props) {
                                 <Input
                                     id="email"
                                     type="email"
-                                    required
                                     tabIndex={2}
                                     autoComplete="email"
                                     name="email"
                                     placeholder="email@example.com"
+                                    aria-invalid={!!errors.email}
                                 />
                                 <FieldError>{errors.email}</FieldError>
                             </Field>
@@ -66,12 +68,12 @@ export default function Register({ passwordRules }: Props) {
                                 </FieldLabel>
                                 <PasswordInput
                                     id="password"
-                                    required
                                     tabIndex={3}
                                     autoComplete="new-password"
                                     name="password"
                                     placeholder="Password"
                                     passwordrules={passwordRules}
+                                    aria-invalid={!!errors.password}
                                 />
                                 <FieldError>{errors.password}</FieldError>
                             </Field>
@@ -81,12 +83,14 @@ export default function Register({ passwordRules }: Props) {
                                 </FieldLabel>
                                 <PasswordInput
                                     id="password_confirmation"
-                                    required
                                     tabIndex={4}
                                     autoComplete="new-password"
                                     name="password_confirmation"
                                     placeholder="Confirm password"
                                     passwordrules={passwordRules}
+                                    aria-invalid={
+                                        !!errors.password_confirmation
+                                    }
                                 />
                                 <FieldError>
                                     {errors.password_confirmation}
